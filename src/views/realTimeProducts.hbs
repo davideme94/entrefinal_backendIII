@@ -1,0 +1,26 @@
+{{!< main}}
+
+<h2>Real-Time Product Management</h2>
+
+<form id="productForm">
+    <input type="text" id="title" placeholder="Product Title" required>
+    <input type="text" id="category" placeholder="Category" required>
+    <input type="url" id="thumbnail" placeholder="Thumbnail URL" required>
+    <input type="number" id="price" placeholder="Price" required>
+    <input type="number" id="stock" placeholder="Stock" required>
+    <button type="submit">Add Product</button>
+</form>
+
+<h3>Product List</h3>
+<ul id="productList">
+    {{#each products}}
+        <li>
+            <img src="{{this.thumbnails.[0]}}" alt="{{this.title}}" width="100">
+            <strong>{{this.title}}</strong> - ${{this.price}} - Stock: {{this.stock}}
+        </li>
+    {{/each}}
+</ul>
+
+<script src="/socket.io/socket.io.js"></script>
+<script src="/scripts/realTimeProducts.js"></script>
+

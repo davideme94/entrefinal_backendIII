@@ -1,0 +1,26 @@
+{
+  "type": "module",
+  "name": "e-commerce",
+  "version": "1.0.0",
+  "main": "index.js",
+  "scripts": {
+    "start": "node ./server.js",
+    "dev": "node --watch ./server.js"
+  },
+  "keywords": [],
+  "author": "",
+  "license": "ISC",
+  "description": "",
+  "dependencies": {
+    "express": "^4.21.2",
+    "express-handlebars": "^8.0.1",
+    "fs-extra": "^11.3.0",
+    "http": "^0.0.1-security",
+    "mongoose": "^8.12.1",
+    "mongoose-paginate-v2": "^1.9.0",
+    "morgan": "^1.10.0",
+    "path": "^0.12.7",
+    "socket.io": "^4.8.1",
+    "uuid": "^11.1.0"
+  }
+}

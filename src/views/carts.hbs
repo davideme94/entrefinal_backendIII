@@ -1,0 +1,15 @@
+{{!< main}}
+
+<h2>Your Cart</h2>
+
+{{#if cart.products.length}}
+  <ul>
+    {{#each cart.products}}
+      <li>
+        <strong>{{this.product.title}}</strong> - ${{this.product.price}} x {{this.quantity}} = ${{multiply this.quantity this.product.price}}
+      </li>
+    {{/each}}
+  </ul>
+{{else}}
+  <p>Your cart is empty.</p>
+{{/if}}

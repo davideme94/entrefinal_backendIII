@@ -1,0 +1,21 @@
+{{!< main}}
+
+<h2 class="text-center mb-4">Registered Users</h2>
+<table class="table table-striped">
+    <thead class="table-dark">
+        <tr>
+            <th>Name</th>
+            <th>Email</th>
+            <th>Role</th>
+        </tr>
+    </thead>
+    <tbody>
+        {{#each users}}
+            <tr>
+                <td>{{this.name}}</td>
+                <td>{{this.email}}</td>
+                <td>{{this.role}}</td>
+            </tr>
+        {{/each}}
+    </tbody>
+</table>

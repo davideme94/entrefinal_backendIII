@@ -1,0 +1,86 @@
+{{!< main}}
+
+<h2 class="text-center mb-4">Available Rentals</h2>
+
+<!-- 🔥 Filtros -->
+<form id="filtersForm">
+  <input type="text" id="category" name="query" placeholder="Category" value="{{query}}">
+  <input type="number" id="minPrice" name="minPrice" placeholder="Min Price" value="{{minPrice}}">
+  <input type="number" id="maxPrice" name="maxPrice" placeholder="Max Price" value="{{maxPrice}}">
+  <input type="number" id="minStock" name="minStock" placeholder="Min Stock" value="{{minStock}}">
+  <input type="number" id="maxStock" name="maxStock" placeholder="Max Stock" value="{{maxStock}}">
+
+  <select id="sort" name="sort">
+    <option value="">Sort By</option>
+    <option value="asc" {{#if (eq sort "asc")}}selected{{/if}}>Price: Low to High</option>
+    <option value="desc" {{#if (eq sort "desc")}}selected{{/if}}>Price: High to Low</option>
+  </select>
+
+  <select id="limit" name="limit">
+    <option value="10" {{#if (eq limit "10")}}selected{{/if}}>10 per page</option>
+    <option value="15" {{#if (eq limit "15")}}selected{{/if}}>15 per page</option>
+    <option value="20" {{#if (eq limit "20")}}selected{{/if}}>20 per page</option>
+    <option value="30" {{#if (eq limit "30")}}selected{{/if}}>30 per page</option>
+    <option value="50" {{#if (eq limit "50")}}selected{{/if}}>50 per page</option>
+  </select>
+
+  <button type="submit">Apply Filters</button>
+</form>
+
+<!-- 🚀 Productos -->
+<div class="row mt-4">
+  {{#each products}}
+    <div class="col-md-4">
+      <div class="card mb-4 shadow-sm">
+        <img src="{{this.thumbnails.[0]}}" class="card-img-top" alt="Product Image" onerror="this.src='/images/default.jpg'">
+        <div class="card-body">
+          <h5 class="card-title">{{this.title}}</h5>
+          <p class="card-text">Category: <strong>{{this.category}}</strong></p>
+          <p class="card-text">Price: <strong>${{this.price}}</strong></p>
+          <p class="card-text">Stock: <strong>{{this.stock}} available</strong></p>
+          <a href="#" class="btn btn-primary">Rent Now</a>
+        </div>
+      </div>
+    </div>
+  {{/each}}
+</div>
+
+<!-- 🚀 Paginación -->
+<div class="pagination d-flex justify-content-center align-items-center gap-2">
+  {{#if pagination.hasPrevPage}}
+    <a href="/products?page={{pagination.prevPage}}&limit={{pagination.limit}}{{queryString}}" class="btn btn-outline-primary">⬅ Prev</a>
+  {{/if}}
+
+  <span>Page {{pagination.currentPage}} of {{pagination.totalPages}}</span>
+
+  {{#if pagination.hasNextPage}}
+    <a href="/products?page={{pagination.nextPage}}&limit={{pagination.limit}}{{queryString}}" class="btn btn-outline-primary">Next ➡</a>
+  {{/if}}
+</div>
+
+<!-- Script para aplicar filtros -->
+<script>
+  document.getElementById("filtersForm").addEventListener("submit", function (e) {
+    e.preventDefault();
+
+    const query = document.getElementById("category").value;
+    const minPrice = document.getElementById("minPrice").value;
+    const maxPrice = document.getElementById("maxPrice").value;
+    const minStock = document.getElementById("minStock").value;
+    const maxStock = document.getElementById("maxStock").value;
+    const sort = document.getElementById("sort").value;
+    const limit = document.getElementById("limit").value;
+
+    let url = "/api/products?";
+    if (query) url += `query=${encodeURIComponent(query)}&`;
+    if (minPrice) url += `minPrice=${minPrice}&`;
+    if (maxPrice) url += `maxPrice=${maxPrice}&`;
+    if (minStock) url += `minStock=${minStock}&`;
+    if (maxStock) url += `maxStock=${maxStock}&`;
+    if (sort) url += `sort=${sort}&`;
+    if (limit) url += `limit=${limit}&`;
+
+    window.location.href = url.slice(0, -1); // 👈 Quita el último "&"
+  });
+</script>
+
