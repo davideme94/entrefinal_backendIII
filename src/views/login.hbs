@@ -1,0 +1,18 @@
+{{!< main}}
+
+<h2 class="text-center mb-4">Iniciar Sesión</h2>
+<form method="POST" action="/api/sessions/login" class="w-50 mx-auto">
+  <div class="mb-3">
+    <label>Email:</label>
+    <input type="email" name="email" class="form-control" required />
+  </div>
+  <div class="mb-3">
+    <label>Contraseña:</label>
+    <input type="password" name="password" class="form-control" required />
+  </div>
+  <button type="submit" class="btn btn-primary w-100">Iniciar sesión</button>
+</form>
+
+<p class="text-center mt-3">
+  ¿No tenés cuenta? <a href="/register">Registrate</a>
+</p>

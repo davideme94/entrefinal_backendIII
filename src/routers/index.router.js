@@ -25,5 +25,15 @@ router.get("/users", async (req, res) => {
     res.render("users", { title: "Users", users });
 });
 
+router.get("/login", (req, res) => {
+    res.render("login", { title: "Iniciar sesión" });
+  });
+  
+  router.get("/register", (req, res) => {
+    res.render("register", { title: "Registro" });
+  });
+
+  
 // ✅ Exportación correcta para usar con `import`
 export default router;
+
