@@ -1,62 +1,67 @@
-# 🏠 Rental Management API
+# 🛒 Primera Pre-Entrega - Proyecto Backend II
 
-Este es un sistema de gestión de alquileres (`Rentals`), donde los usuarios pueden administrar productos (`rentals`), carritos de compras (`carts`) y usuarios (`users`). 
-
-El sistema está desarrollado con **Node.js, Express y Handlebars**, y utiliza archivos JSON para la persistencia de datos.
-
----
-
-## 📌 Tecnologías utilizadas
-- **Node.js** - Entorno de ejecución de JavaScript
-- **Express.js** - Framework para crear el servidor backend
-- **Handlebars.js** - Motor de plantillas para las vistas
-- **Bootstrap 5** - Para el diseño de la interfaz
-- **Multer** - Para manejo de archivos e imágenes (si se usa)
-- **Morgan** - Middleware para logs de solicitudes
-- **FS-Extra** - Para manejar archivos JSON
+**Alumno**: Jesús David Hipperdinger  
+**Repositorio**: [GitHub](https://github.com/davideme94/primerapreentrega_backend2_HIPPERDINGER)
 
 ---
 
-ESTRUCTURA DEL PROYECTO
+## 📦 Descripción
 
-E-COMMERCE/
-│── node_modules/             # Dependencias de Node.js
-│── public/                   # Archivos estáticos (CSS, imágenes)
-│   ├── css/                  # Estilos personalizados
-│   ├── images/               # Imágenes para los productos
-│── src/                      
-│   ├── controllers/          # Controladores de productos, carritos y usuarios
-│   ├── data/                 
-│   │   ├── fs/               # Persistencia en JSON
-│   │   │   ├── products.json # Datos de productos
-│   │   │   ├── carts.json    # Datos de carritos
-│   │   │   ├── users.json    # Datos de usuarios
-│   ├── middlewares/          # Middlewares para manejo de errores y logs
-│   ├── routers/              # Rutas de la API
-│   ├── views/                # Plantillas Handlebars
-│   │   ├── layouts/          # Main layout
-│   │   ├── home.hbs          # Página principal
-│   │   ├── products.hbs      # Vista de productos
-│   │   ├── carts.hbs         # Vista de carritos
-│   │   ├── users.hbs         # Vista de usuarios
-│── .gitignore                # Archivos ignorados en el repo
-│── package.json              # Dependencias y scripts
-│── server.js                 # Configuración del servidor
-│── README.md                 # Documentación del proyecto
+Este proyecto consiste en la implementación de una **plataforma e-commerce** en Node.js utilizando Express, MongoDB, Handlebars, WebSockets y Passport.
 
+Corresponde a la primera **pre-entrega** del Proyecto Final del curso **Backend II**, incluyendo:
 
+- CRUD de usuarios con modelo extendido.
+- Sistema de autenticación con `bcrypt` y `passport-jwt`.
+- Middleware de autorización.
+- Envío y lectura de cookies con `cookie-parser`.
+- Conexión a **MongoDB Atlas** y uso de `populate`.
+- Rutas protegidas y vistas dinámicas con Handlebars + Bootstrap.
 
+---
 
-Probar la API en Thunder Client ( ES LA QUE SE USO PARA PROBAR), POSTMAN o en el navegador:
+## 🚀 Tecnologías utilizadas
 
+- Node.js + Express
+- MongoDB Atlas + Mongoose
+- Handlebars como template engine
+- WebSockets (socket.io)
+- Passport + JWT
+- Bcrypt para hashear contraseñas
+- Bootstrap para las vistas
+- dotenv para variables de entorno
 
+---
 
+## ✅ Funcionalidades desarrolladas en esta entrega
 
+### 📄 Modelo `User`
+- `first_name: String`
+- `last_name: String`
+- `email: String (único)`
+- `age: Number`
+- `password: String (hash)`
+- `cart: ObjectId` (referencia a modelo Cart)
+- `role: String` (default: `user`)
 
+### 🔐 Autenticación y Seguridad
+- Registro de usuarios con encriptación de contraseña (`bcrypt`)
+- Login con estrategia `JWT`
+- Ruta protegida con `passport-jwt` para acceder al perfil del usuario logueado (`/api/sessions/current`)
+- Middleware extractor de cookie para obtener el token
+- Manejo de sesiones con cookies (`cookie-parser`)
 
-PAGINA CON VISTAS INCLUIDAS: 
+### 👁️ Vistas implementadas
+- `/login`: formulario de login
+- `/register`: formulario de registro
+- Navbar con navegación accesible (Rentals, Carts, Users, Agregar producto, Login/Register)
 
-http://localhost:8080/ (HOME)
-http://localhost:8080/products (PRODUCTS)
-http://localhost:8080/carts (CART)
-http://localhost:8080/users ( USERS)
+---
+
+## ⚙️ Configuración
+
+1. Clonar el repositorio:
+
+```bash
+git clone https://github.com/davideme94/primerapreentrega_backend2_HIPPERDINGER.git
+cd primerapreentrega_backend2_HIPPERDINGER
