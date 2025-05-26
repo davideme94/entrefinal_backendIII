@@ -1,5 +1,10 @@
 import { Router } from "express";
-import cartsManager from "../../data/mongo/cartsManager.js";
+
+// 🔄 RUTA CORREGIDA
+import cartsManager from "../../daos/mongo/cartsManager.js";
+
+import { passportCall } from "../../utils/passport.js";
+import { purchaseCart } from "../../controllers/purchase.controller.js";
 
 const router = Router();
 
@@ -58,5 +63,8 @@ router.get("/:cid", async (req, res, next) => {
     next(error);
   }
 });
+
+// ✅ NUEVA RUTA - FINALIZAR COMPRA Y GENERAR TICKET
+router.post("/:cid/purchase", passportCall('jwt'), purchaseCart);
 
 export default router;

@@ -12,7 +12,9 @@ import initializePassport from "./src/auth/passport.js";
 import exphbs from "express-handlebars";
 import path from "path";
 import { fileURLToPath } from "url";
-import productsManager from "./src/data/mongo/productsManager.js";
+
+// ✅ IMPORT CORREGIDO
+import productsManager from "./src/daos/mongo/productsManager.js";
 
 // 📌 Middlewares propios
 import pathHandler from "./src/middlewares/pathHandler.js";

@@ -1,4 +1,5 @@
-import productsManager from "../data/mongo/productsManager.js";
+// ✅ RUTA CORREGIDA
+import productsManager from "../daos/mongo/productsManager.js";
 
 class ProductsController {
   async create(req, res, next) {
@@ -49,7 +50,6 @@ class ProductsController {
 
       const productsData = await productsManager.getAll(filters, options);
 
-      // ⚙️ Generar query string para mantener filtros en paginación
       const queryParams = new URLSearchParams({
         query: query || "",
         minPrice: minPrice || "",
@@ -72,7 +72,6 @@ class ProductsController {
           prevPage: productsData.prevPage,
           limit
         },
-        // Mantener estado del formulario en la vista
         query,
         minPrice,
         maxPrice,

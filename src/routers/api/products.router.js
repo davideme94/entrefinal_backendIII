@@ -1,6 +1,11 @@
 import { Router } from "express";
 import productsController from "../../controllers/products.controller.js";
-import productsManager from "../../data/mongo/productsManager.js";
+
+// ✅ CORREGIDA: nueva ubicación
+import productsManager from "../../daos/mongo/productsManager.js";
+
+import { passportCall } from "../../utils/passport.js";
+import { checkRole } from "../../middlewares/roleMiddleware.js";
 
 const router = Router();
 
@@ -30,12 +35,11 @@ router.get("/real", async (req, res, next) => {
   }
 });
 
-
-
-// 🔹 CRUD
+// 🔹 CRUD CON ROLES
 router.get("/:pid", productsController.getOne);
-router.post("/", productsController.create);
-router.put("/:pid", productsController.update);
-router.delete("/:pid", productsController.delete);
+
+router.post("/", passportCall('jwt'), checkRole('admin'), productsController.create);
+router.put("/:pid", passportCall('jwt'), checkRole('admin'), productsController.update);
+router.delete("/:pid", passportCall('jwt'), checkRole('admin'), productsController.delete);
 
 export default router;
