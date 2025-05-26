@@ -1,22 +1,14 @@
-# 🛒 Primera Pre-Entrega - Proyecto Backend II
+# 🛍️ Proyecto Final - Backend II
 
 **Alumno**: Jesús David Hipperdinger  
-**Repositorio**: [GitHub](https://github.com/davideme94/primerapreentrega_backend2_HIPPERDINGER)
+**Curso**: Backend II - Coderhouse  
+**Repositorio**: [GitHub](https://github.com/davideme94/Hipperdinger_backend2final)
 
 ---
 
 ## 📦 Descripción
 
-Este proyecto consiste en la implementación de una **plataforma e-commerce** en Node.js utilizando Express, MongoDB, Handlebars, WebSockets y Passport.
-
-Corresponde a la primera **pre-entrega** del Proyecto Final del curso **Backend II**, incluyendo:
-
-- CRUD de usuarios con modelo extendido.
-- Sistema de autenticación con `bcrypt` y `passport-jwt`.
-- Middleware de autorización.
-- Envío y lectura de cookies con `cookie-parser`.
-- Conexión a **MongoDB Atlas** y uso de `populate`.
-- Rutas protegidas y vistas dinámicas con Handlebars + Bootstrap.
+Este proyecto es una **API backend completa para un sistema e-commerce**, desarrollada con Node.js, Express y MongoDB. Cumple con todos los requerimientos del **proyecto final** del curso Backend II, incluyendo autenticación, roles, arquitectura por capas, DTOs, mailing, y un sistema de tickets de compra.
 
 ---
 
@@ -24,44 +16,50 @@ Corresponde a la primera **pre-entrega** del Proyecto Final del curso **Backend 
 
 - Node.js + Express
 - MongoDB Atlas + Mongoose
-- Handlebars como template engine
+- Handlebars (views)
 - WebSockets (socket.io)
-- Passport + JWT
-- Bcrypt para hashear contraseñas
-- Bootstrap para las vistas
-- dotenv para variables de entorno
+- Passport + JWT (autenticación)
+- Bcrypt (hash de contraseñas)
+- Nodemailer (envío de emails)
+- Bootstrap (UI)
+- dotenv (variables de entorno)
 
 ---
 
-## ✅ Funcionalidades desarrolladas en esta entrega
+## ✅ Funcionalidades clave
 
-### 📄 Modelo `User`
-- `first_name: String`
-- `last_name: String`
-- `email: String (único)`
-- `age: Number`
-- `password: String (hash)`
-- `cart: ObjectId` (referencia a modelo Cart)
-- `role: String` (default: `user`)
+### 🧱 Arquitectura
+- Basada en capas: `controllers/`, `services/`, `daos/`, `dtos/`, `models/`, `routers/`, `middlewares/`, `utils/`
 
-### 🔐 Autenticación y Seguridad
-- Registro de usuarios con encriptación de contraseña (`bcrypt`)
-- Login con estrategia `JWT`
-- Ruta protegida con `passport-jwt` para acceder al perfil del usuario logueado (`/api/sessions/current`)
-- Middleware extractor de cookie para obtener el token
-- Manejo de sesiones con cookies (`cookie-parser`)
+### 👤 Autenticación y Seguridad
+- Registro y login con `bcrypt` y `passport-jwt`
+- Token guardado en cookie (`cookie-parser`)
+- Middleware `passportCall()` para proteger rutas
+- Middleware `checkRole()` para verificar permisos
 
-### 👁️ Vistas implementadas
-- `/login`: formulario de login
-- `/register`: formulario de registro
-- Navbar con navegación accesible (Rentals, Carts, Users, Agregar producto, Login/Register)
+### 🛒 Productos y Carritos
+- CRUD de productos limitado a admins
+- Usuarios pueden ver, agregar y actualizar productos en carritos
+- Filtros por categoría, precio, stock y orden
+- Vistas con paginación
+
+### 🧾 Sistema de Compra y Tickets
+- Ruta `/api/carts/:cid/purchase`
+- Verificación de stock
+- Generación de ticket con código único, fecha, monto y comprador
+- Ticket persistido en MongoDB
+- Email de confirmación enviado al comprador
+
+### 📦 DTOs
+- DTO para `/api/users/current` que oculta datos sensibles
 
 ---
 
-## ⚙️ Configuración
+## 🛠️ Instalación y ejecución
 
-1. Clonar el repositorio:
+1. Clonar el proyecto:
 
 ```bash
-git clone https://github.com/davideme94/primerapreentrega_backend2_HIPPERDINGER.git
-cd primerapreentrega_backend2_HIPPERDINGER
+git clone https://github.com/davideme94/Hipperdinger_backend2final.git
+cd Hipperdinger_backend2final
+npm install
