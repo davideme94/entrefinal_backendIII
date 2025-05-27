@@ -2,6 +2,7 @@ import { Router } from "express";
 import productsManager from "../daos/mongo/productsManager.js";
 import cartsManager from "../daos/mongo/cartsManager.js";
 import usersManager from "../daos/mongo/usersManager.js";
+import mocksRouter from "./api/mocks.router.js"; // ✅ AÑADIDO
 
 const router = Router();
 
@@ -31,5 +32,8 @@ router.get("/login", (req, res) => {
 router.get("/register", (req, res) => {
   res.render("register", { title: "Registro" });
 });
+
+// ✅ NUEVO: endpoint para mocking
+router.use("/api/mocks", mocksRouter);
 
 export default router;
